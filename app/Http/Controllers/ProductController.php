@@ -14,8 +14,6 @@ class ProductController extends Controller
         $validated = $request->validate([
             'product_type_id' => 'required|exists:product_types,id',
             'name' => 'required|string',
-            'price' => 'required|numeric',
-            'description' => 'nullable|string'
         ]);
         return Product::create($validated);
     }
@@ -28,8 +26,6 @@ class ProductController extends Controller
         $validated = $request->validate([
             'product_type_id' => 'required|exists:product_types,id',
             'name' => 'required|string',
-            'price' => 'required|numeric',
-            'description' => 'nullable|string'
         ]);
         $product->update($validated);
         return $product;

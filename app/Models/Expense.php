@@ -15,8 +15,9 @@ class Expense extends Model
         'user_id',
         'product_id',
         'discounted_price',
+        'price',
         'notes',
-        'date'
+        'expense_date'
     ];
 
     public function user()
