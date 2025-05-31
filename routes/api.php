@@ -4,7 +4,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
-
 use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductTypeController;
@@ -17,7 +16,7 @@ use App\Http\Controllers\ProductTypeController;
 
 // Public Routes
 Route::post('/login', [AuthController::class, 'login']);
-Route::post('/register', [UserController::class, 'register']); 
+Route::post('/register', [UserController::class, 'register']);
 
 // Protected Routes - Require authentication via Sanctum
 Route::middleware('auth:sanctum')->group(function () {
@@ -27,14 +26,14 @@ Route::middleware('auth:sanctum')->group(function () {
         return $request->user();
     });
 
-     // Expense routes
-     Route::apiResource('expenses', ExpenseController::class);
+    // Expense routes - POST only
+    Route::post('/expenses', [ExpenseController::class, 'store']);
 
-     // Product routes
-     Route::apiResource('products', ProductController::class);
- 
-     // ProductType routes
-     Route::apiResource('product-types', ProductTypeController::class);
+    // Product routes - POST only
+    Route::post('/products', [ProductController::class, 'store']);
+
+    // ProductType routes - POST only
+    Route::post('/product-types', [ProductTypeController::class, 'store']);
 
     // User Management Routes
     Route::patch('/users/{id}/status', [UserController::class, 'toggleActive']); // Toggle active/inactive status
