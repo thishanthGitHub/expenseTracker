@@ -28,9 +28,11 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // Expense routes - POST only
     Route::post('/expenses', [ExpenseController::class, 'store']);
+    Route::get('/expenses', [ProductController::class, 'index']);
 
     // Product routes - POST only
     Route::post('/products', [ProductController::class, 'store']);
+    Route::get('/products', [ProductController::class, 'index']);
 
     // ProductType routes - POST only
     Route::post('/product-types', [ProductTypeController::class, 'store']);
