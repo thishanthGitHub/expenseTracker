@@ -20,6 +20,11 @@ class Expense extends Model
         'expense_date'
     ];
 
+    protected $casts = [
+        'additional_values' => 'array',
+    ];
+
+
     public function user()
     {
         return $this->belongsTo(User::class);

@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 class ExpenseController extends Controller
 {
-    // List all expenses for the authenticated user with related product and product type
+
     public function index()
     {
         return Expense::with(['product.productType'])
@@ -30,6 +30,7 @@ class ExpenseController extends Controller
             'discounted_price' => 'nullable|numeric',
             'expense_date' => 'required|date',
             'notes' => 'nullable|string',
+            'additional_values' => 'nullable|array',
         ]);
 
         $validated['user_id'] = Auth::id();
@@ -60,6 +61,7 @@ class ExpenseController extends Controller
             'discounted_price' => 'nullable|numeric',
             'expense_date' => 'required|date',
             'notes' => 'nullable|string',
+            'additional_values' => 'nullable|array',
         ]);
 
         $expense->update($validated);
