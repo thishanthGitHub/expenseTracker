@@ -1,5 +1,7 @@
 <?php
 
+// app/Http/Controllers/ExpenseController.php
+
 namespace App\Http\Controllers;
 
 use App\Models\Expense;
@@ -8,7 +10,6 @@ use Illuminate\Support\Facades\Auth;
 
 class ExpenseController extends Controller
 {
-
     public function index()
     {
         return Expense::with(['product.productType'])
@@ -16,10 +17,8 @@ class ExpenseController extends Controller
             ->get();
     }
 
-    // Store a new expense
     public function store(Request $request)
     {
-        // Convert camelCase to snake_case for consistency
         if ($request->has('expenseDate')) {
             $request->merge(['expense_date' => $request->input('expenseDate')]);
         }
@@ -38,7 +37,6 @@ class ExpenseController extends Controller
         return Expense::create($validated);
     }
 
-    // Show a specific expense
     public function show(Expense $expense)
     {
         $this->authorize('view', $expense);
@@ -46,7 +44,6 @@ class ExpenseController extends Controller
         return $expense->load(['product.productType']);
     }
 
-    // Update an existing expense
     public function update(Request $request, Expense $expense)
     {
         $this->authorize('update', $expense);
@@ -69,11 +66,9 @@ class ExpenseController extends Controller
         return $expense;
     }
 
-    // Delete an expense
     public function destroy(Expense $expense)
     {
         $this->authorize('delete', $expense);
-
         $expense->delete();
 
         return response()->noContent();
