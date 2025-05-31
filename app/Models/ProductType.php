@@ -6,7 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class ProductType extends Model
 {
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'notes', 'additional_column'];
+    protected $casts = [
+        'additional_column' => 'array',
+    ];
 
     public function products()
     {
