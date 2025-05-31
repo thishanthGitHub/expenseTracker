@@ -1,7 +1,5 @@
 <?php
 
-// app/Models/Expense.php
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -17,13 +15,13 @@ class Expense extends Model
         'discounted_price',
         'price',
         'notes',
-        'expense_date'
+        'expense_date',
+        'additional_values', // ✅ Add this line to allow mass assignment
     ];
 
     protected $casts = [
-        'additional_values' => 'array',
+        'additional_values' => 'array', // ✅ Ensures JSON is cast to PHP array
     ];
-
 
     public function user()
     {
