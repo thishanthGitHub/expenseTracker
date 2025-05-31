@@ -34,6 +34,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // ProductType routes - POST only
     Route::post('/product-types', [ProductTypeController::class, 'store']);
+    Route::get('/product-types', [ProductTypeController::class, 'index']);
 
     // User Management Routes
     Route::patch('/users/{id}/status', [UserController::class, 'toggleActive']); // Toggle active/inactive status
